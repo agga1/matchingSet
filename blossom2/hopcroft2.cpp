@@ -19,13 +19,15 @@ using namespace std;
 #define INF INT32_MAX
 class Graph
 {
+    int nrOfEmp;
     int V;
     list<int> *adj;
     int *pairs, *dist;
 public:
-    explicit Graph(int V){
+    Graph(int V, int nrOfEmp){
         this->V = V;
         this->adj = new list<int>[V+1];
+        this->nrOfEmp = nrOfEmp;
         this->pairs = new int[V+1];
         this->dist = new int [V+1];
     }
@@ -33,18 +35,19 @@ public:
     void addEdge(int u, int v);
     bool bfs();
     void hopcroft();
-    void blossom();
     bool dfs(int u);
 };
 void Graph::addEdge(int u, int v)
 {
-    adj[u].push_back(v);
+    adj[u].push_back(v); // Add u to v’s list.
     adj[v].push_back(u);
 }
+//zzx 4 2 0 1 3 0 2 0 3 1 3
 void Graph::hopcroft() {
     memset(pairs, NIL, (V+1)*sizeof(int));
     int result = 0;
     while(bfs()) {
+//        cout << "next bfs\n";
         for(auto u: employees)
             if (pairs[u]==NIL && dfs(u))
                 result++;
@@ -54,9 +57,7 @@ void Graph::hopcroft() {
         if(pairs[i]==NIL) continue;
         cout<<i-1<<" "<<pairs[i]-1<<"\n";
     }
-}
-void Graph::blossom() {
-    
+//    return result;
 }
 bool Graph::bfs() {
     queue<int> q;
@@ -82,6 +83,10 @@ bool Graph::bfs() {
             }
         }
     }
+    for(auto it:employees){
+//        cout<<"\n v nr "<<it;
+//        cout<<"dist: "<<dist[it];
+    }
     return dist[NIL]!=INF;
 }
 bool Graph::dfs(int u){
@@ -106,7 +111,7 @@ int main(){
     int nrOfResidents, nrOfEmp, nrOfMeetings;
     bool isBipartite = true;
     cin>>nrOfResidents>>nrOfEmp;
-    Graph g(nrOfResidents);
+    Graph g(nrOfResidents, nrOfEmp);
     for(int i=0;i<nrOfEmp;i++){
         int empNr;
         cin >> empNr;
@@ -126,5 +131,5 @@ int main(){
         g.hopcroft();
     }
     else
-        g.blossom();
+        g.hopcroft();
 }

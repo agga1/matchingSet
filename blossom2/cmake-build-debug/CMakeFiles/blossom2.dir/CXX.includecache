@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Agnieszka/Studia/AG/MatchingSetProject/blossom2/blossom.cpp
+iostream
+-
+
+C:/Users/Agnieszka/Studia/AG/MatchingSetProject/blossom2/main.cpp
+iostream
+-
+stdio.h
+-
+

@@ -96,19 +96,40 @@ CMakeFiles\main1.dir\hopcroft.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\main1.dir\hopcroft.cpp.s /c C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\hopcroft.cpp
 <<
 
+CMakeFiles\main1.dir\hopcroft3.cpp.obj: CMakeFiles\main1.dir\flags.make
+CMakeFiles\main1.dir\hopcroft3.cpp.obj: ..\hopcroft3.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main1.dir/hopcroft3.cpp.obj"
+	C:\PROGRA~2\MICROS~1\2017\COMMUN~1\VC\Tools\MSVC\1414~1.264\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\main1.dir\hopcroft3.cpp.obj /FdCMakeFiles\main1.dir\ /FS -c C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\hopcroft3.cpp
+<<
+
+CMakeFiles\main1.dir\hopcroft3.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main1.dir/hopcroft3.cpp.i"
+	C:\PROGRA~2\MICROS~1\2017\COMMUN~1\VC\Tools\MSVC\1414~1.264\bin\Hostx86\x86\cl.exe > CMakeFiles\main1.dir\hopcroft3.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\hopcroft3.cpp
+<<
+
+CMakeFiles\main1.dir\hopcroft3.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main1.dir/hopcroft3.cpp.s"
+	C:\PROGRA~2\MICROS~1\2017\COMMUN~1\VC\Tools\MSVC\1414~1.264\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\main1.dir\hopcroft3.cpp.s /c C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\hopcroft3.cpp
+<<
+
 # Object files for target main1
 main1_OBJECTS = \
 "CMakeFiles\main1.dir\main.cpp.obj" \
-"CMakeFiles\main1.dir\hopcroft.cpp.obj"
+"CMakeFiles\main1.dir\hopcroft.cpp.obj" \
+"CMakeFiles\main1.dir\hopcroft3.cpp.obj"
 
 # External object files for target main1
 main1_EXTERNAL_OBJECTS =
 
 main1.exe: CMakeFiles\main1.dir\main.cpp.obj
 main1.exe: CMakeFiles\main1.dir\hopcroft.cpp.obj
+main1.exe: CMakeFiles\main1.dir\hopcroft3.cpp.obj
 main1.exe: CMakeFiles\main1.dir\build.make
 main1.exe: CMakeFiles\main1.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main1.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable main1.exe"
 	"D:\ProgramFilesD\CLion 2018.2.5\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\main1.dir --manifests  -- C:\PROGRA~2\MICROS~1\2017\COMMUN~1\VC\Tools\MSVC\1414~1.264\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\main1.dir\objects1.rsp @<<
  /out:main1.exe /implib:main1.lib /pdb:C:\Users\Agnieszka\Studia\AG\MatchingSetProject\blossom2\cmake-build-debug\main1.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/main1.dir/main.cpp.obj"
   "CMakeFiles/main1.dir/hopcroft.cpp.obj"
+  "CMakeFiles/main1.dir/hopcroft3.cpp.obj"
   "main1.pdb"
   "main1.exe"
   "main1.exe.manifest"

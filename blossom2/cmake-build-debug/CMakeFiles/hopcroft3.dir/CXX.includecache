@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Agnieszka/Studia/AG/MatchingSetProject/blossom2/hopcroft3.cpp
+iostream
+-
+list
+-
+queue
+-
+algorithm
+-
+string
+-
+cstring
+-
+unordered_set
+-
+cstdint
+-
+limits
+-
+

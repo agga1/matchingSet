@@ -56,6 +56,7 @@ void Graph::hopcroft() {
     for(auto i:employees){
         if(pairs[i]==NIL) continue;
         cout<<i-1<<" "<<pairs[i]-1<<"\n";
+        pairs[pairs[i]] = NIL;
     }
 }
 bool Graph::bfs() {
@@ -125,5 +126,5 @@ int main(){
         g.hopcroft();
     }
     else
-        g.blossom();
+        g.hopcroft();
 }

@@ -150,6 +150,32 @@ blossom\fast:
 	$(MAKE) -f CMakeFiles\blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\blossom.dir\build
 .PHONY : blossom\fast
 
+#=============================================================================
+# Target rules for targets named hopcroft3
+
+# Build rule for target.
+hopcroft3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) hopcroft3
+.PHONY : hopcroft3
+
+# fast build rule for target.
+hopcroft3\fast:
+	$(MAKE) -f CMakeFiles\hopcroft3.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft3.dir\build
+.PHONY : hopcroft3\fast
+
+#=============================================================================
+# Target rules for targets named hopcroft-blossom
+
+# Build rule for target.
+hopcroft-blossom: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) hopcroft-blossom
+.PHONY : hopcroft-blossom
+
+# fast build rule for target.
+hopcroft-blossom\fast:
+	$(MAKE) -f CMakeFiles\hopcroft-blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft-blossom.dir\build
+.PHONY : hopcroft-blossom\fast
+
 blossom.obj: blossom.cpp.obj
 
 .PHONY : blossom.obj
@@ -176,6 +202,33 @@ blossom.s: blossom.cpp.s
 blossom.cpp.s:
 	$(MAKE) -f CMakeFiles\blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\blossom.dir\blossom.cpp.s
 .PHONY : blossom.cpp.s
+
+hopcroft-blossom.obj: hopcroft-blossom.cpp.obj
+
+.PHONY : hopcroft-blossom.obj
+
+# target to build an object file
+hopcroft-blossom.cpp.obj:
+	$(MAKE) -f CMakeFiles\hopcroft-blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft-blossom.dir\hopcroft-blossom.cpp.obj
+.PHONY : hopcroft-blossom.cpp.obj
+
+hopcroft-blossom.i: hopcroft-blossom.cpp.i
+
+.PHONY : hopcroft-blossom.i
+
+# target to preprocess a source file
+hopcroft-blossom.cpp.i:
+	$(MAKE) -f CMakeFiles\hopcroft-blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft-blossom.dir\hopcroft-blossom.cpp.i
+.PHONY : hopcroft-blossom.cpp.i
+
+hopcroft-blossom.s: hopcroft-blossom.cpp.s
+
+.PHONY : hopcroft-blossom.s
+
+# target to generate assembly for a file
+hopcroft-blossom.cpp.s:
+	$(MAKE) -f CMakeFiles\hopcroft-blossom.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft-blossom.dir\hopcroft-blossom.cpp.s
+.PHONY : hopcroft-blossom.cpp.s
 
 hopcroft.obj: hopcroft.cpp.obj
 
@@ -231,6 +284,36 @@ hopcroft2.cpp.s:
 	$(MAKE) -f CMakeFiles\hopcroft2.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft2.dir\hopcroft2.cpp.s
 .PHONY : hopcroft2.cpp.s
 
+hopcroft3.obj: hopcroft3.cpp.obj
+
+.PHONY : hopcroft3.obj
+
+# target to build an object file
+hopcroft3.cpp.obj:
+	$(MAKE) -f CMakeFiles\main1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main1.dir\hopcroft3.cpp.obj
+	$(MAKE) -f CMakeFiles\hopcroft3.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft3.dir\hopcroft3.cpp.obj
+.PHONY : hopcroft3.cpp.obj
+
+hopcroft3.i: hopcroft3.cpp.i
+
+.PHONY : hopcroft3.i
+
+# target to preprocess a source file
+hopcroft3.cpp.i:
+	$(MAKE) -f CMakeFiles\main1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main1.dir\hopcroft3.cpp.i
+	$(MAKE) -f CMakeFiles\hopcroft3.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft3.dir\hopcroft3.cpp.i
+.PHONY : hopcroft3.cpp.i
+
+hopcroft3.s: hopcroft3.cpp.s
+
+.PHONY : hopcroft3.s
+
+# target to generate assembly for a file
+hopcroft3.cpp.s:
+	$(MAKE) -f CMakeFiles\main1.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\main1.dir\hopcroft3.cpp.s
+	$(MAKE) -f CMakeFiles\hopcroft3.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\hopcroft3.dir\hopcroft3.cpp.s
+.PHONY : hopcroft3.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -267,17 +350,25 @@ help:
 	@echo ... main1
 	@echo ... hopcroft2
 	@echo ... blossom
+	@echo ... hopcroft3
 	@echo ... edit_cache
+	@echo ... hopcroft-blossom
 	@echo ... rebuild_cache
 	@echo ... blossom.obj
 	@echo ... blossom.i
 	@echo ... blossom.s
+	@echo ... hopcroft-blossom.obj
+	@echo ... hopcroft-blossom.i
+	@echo ... hopcroft-blossom.s
 	@echo ... hopcroft.obj
 	@echo ... hopcroft.i
 	@echo ... hopcroft.s
 	@echo ... hopcroft2.obj
 	@echo ... hopcroft2.i
 	@echo ... hopcroft2.s
+	@echo ... hopcroft3.obj
+	@echo ... hopcroft3.i
+	@echo ... hopcroft3.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

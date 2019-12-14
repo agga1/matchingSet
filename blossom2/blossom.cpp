@@ -13,7 +13,7 @@ match[i] is matched pair of i (-1 if there isn't a matched pair)
 //#include <bits/stdc++.h>
 using namespace std;
 const int M=500;
-struct struct_edge{int v;struct_edge* n;};
+struct struct_edge{int v; struct_edge* n;};
 typedef struct_edge* edge;
 struct_edge pool[M*M*2];
 edge top=pool,adj[M];

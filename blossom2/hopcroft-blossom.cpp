@@ -14,6 +14,8 @@
 #include <unordered_map>
 #include <cstdint>
 #include <limits>
+#include<vector>
+#include <deque>
 
 using namespace std;
 #define NIL 0
@@ -24,6 +26,10 @@ int edge_hash(int u, int v, int V){
 }
 pair<int, int> get_vertices(int edge, int V){
     return make_pair(edge%V, edge/V);
+}
+int get_other(int edge, int v, int V){
+    int u = edge%V, w = edge/V;
+    return u==v ? w : u;
 }
 struct Node{
     int n;
@@ -41,52 +47,63 @@ struct Node{
         if(parent==this) return this;
         return parent->find_root();
     }
-    // returns hashes of edges on path this->other (exclusive)
-    unordered_set<int> path_to_other(Node* other, int V, unordered_set<int> *active_vs){
+    // returns hashes of edges on path this->other
+    deque<int>* path_to_other(Node* other, int V, unordered_set<int> *active_vs){
         int diff = other->dist_to_root() - this->dist_to_root();
-        unordered_set<int> path;
+        deque<int> *pfurther = new deque<int>;
+        deque<int> *pcloser = new deque<int>;
         Node *further;
         Node *closer;
+        active_vs->erase(other->n);
+        bool this_further;
         if(diff>0){
+            this_further = false;
             further = other;
             closer = this;
-        } else{
+        } else{ // diff<=0
+            this_further = true;
             further = this;
             closer = other;
         }
-        active_vs->erase(further->n);
-        active_vs->erase(closer->n);
         diff = abs(diff);
         while(diff > 0){
             diff--;
-            path.insert(edge_hash(further->n, further->parent->n, V));
+            pfurther->push_back(edge_hash(further->n,further->parent->n, V));
             further = further->parent;
             active_vs->erase(further->n);
         }
         // now both at same lvl
         while(further != closer){
-            path.insert(edge_hash(further->n, further->parent->n, V));
-            path.insert(edge_hash(closer->n, closer->parent->n, V));
+            pfurther->push_back(edge_hash(further->n, further->parent->n, V));
+            pcloser->push_back(edge_hash(closer->n, closer->parent->n, V));
             further = further->parent;
             closer = closer->parent;
             active_vs->erase(further->n);
             active_vs->erase(closer->n);
         }
-        return path;
+        if(this_further){
+            for(auto it = pcloser->rbegin(); it != pcloser->rend(); ++it)
+                pfurther->push_back(*it);
+            return pfurther;
+        }else{
+            for(auto it = pfurther->rbegin(); it != pfurther->rend(); ++it)
+                pcloser->push_back(*it);
+            return pcloser;
+        }
     }
 };
 
 class Graph
 {
     int V; // nr of vertices and edges
-    list<int> *adj;
+    unordered_set<int> *adj;
     int *pairs, *dist; // pairs[i] - only 1 vertex from a pair is not NIL
     int result;
 public:
     explicit Graph(int V){
         this->result = 0;
         this->V = V;
-        this->adj = new list<int>[V+1];
+        this->adj = new unordered_set<int>[V+1];
         this->pairs = new int[V+1];
         this->dist = new int [V+1];
     }
@@ -100,22 +117,46 @@ public:
     void blossom();
     void find_max_matching();
     list<int> find_aug_path();
-    void contract(unordered_set<int> edges, int v);
+    void contract(deque<int> edges, int v);
     int find_unmarked_w_even_dist( Node** nodes, bool*marked);
     int find_other_vertex_from_unmarked_edge_with(int v, unordered_map<int, bool> edge_marked);
+    list<int> lift_p(list<int> p_prim, int v, deque<int> bloss);
+    list<int> path_in_blossom(deque<int> bloss, int v, int next_in_path );
+    void augment_M_along_path(list<int> path);
+    // debug
+    void print_pairs();
 };
 void Graph::addEdge(int u, int v)
 {
-    adj[u].push_back(v);
-    adj[v].push_back(u);
+    adj[u].insert(v);
+    adj[v].insert(u);
 }
 void Graph::find_max_matching(){
     list<int> p = find_aug_path();
     if(!p.empty()){
+        cout<<"found aug path ";
+        for(auto v: p) cout<<v<<" ";
+        augment_M_along_path(p);
         find_max_matching();
     }
 }
-list<int> Graph::find_aug_path() {
+void Graph::augment_M_along_path(list<int> path) {
+    auto it = path.begin();
+    int prev = *it;
+    bool even=true;
+    for(++it; it != path.end(); it++){
+        if(even){
+            pairs[prev] = *it;
+            pairs[*it] = prev;
+        }else{
+            pairs[prev] = pairs[*it] = NIL;
+        }
+        prev = *it;
+        even = !even;
+    }
+    result++;
+}
+list<int> Graph::find_aug_path() {  // returns path as list of vertices
     // if node->parent is null -> node not in forest
     // if node->parent = self -> tree root
     Node** nodes = new Node*[V+1];
@@ -135,6 +176,7 @@ list<int> Graph::find_aug_path() {
         if(pairs[i]!=NIL){
             exposed[i]=exposed[pairs[i]] = false;
             edge_marked[edge_hash(i, pairs[i], V)]= true;
+            cout<<"edge "<<i<<" "<<pairs[i]<<" is used.";
         }
     }
     // create a singleton tree { v } and add the tree to forest for each exposed v
@@ -144,9 +186,11 @@ list<int> Graph::find_aug_path() {
     }
     int v = find_unmarked_w_even_dist(nodes, v_marked);
     while(v != NIL){
+        cout<<"found unmarked w even dist to root "<<v;
         // find unmarked edge e(v,w)
         int w = find_other_vertex_from_unmarked_edge_with(v, edge_marked);
         while(w != NIL){
+            cout<<"found unmarked edge"<<v<<" "<<w;
             if(nodes[w]->parent == nullptr){ // if w not in forest
                 // w is matched, so add edge and w's matched edge to F
                 int x = pairs[w];
@@ -178,8 +222,8 @@ list<int> Graph::find_aug_path() {
 //                    B ← blossom formed by e(v,w) and edges on the path v → w in T
                     unordered_set<int> active_vs;
                     for(int i=1;i<=V;i++) active_vs.insert(i);
-                    unordered_set<int> bloss = nodes[v]->path_to_other(nodes[w], V, &active_vs);
-                    bloss.insert(edge_hash(v, w, V));
+                    deque<int> *bloss = nodes[v]->path_to_other(nodes[w], V, &active_vs);
+                    bloss->push_back(edge_hash(v, w, V));
                     // TODO set of active vert?
 
                     //                    G’, M’ ← contract G and M by B
@@ -188,10 +232,11 @@ list<int> Graph::find_aug_path() {
                     for(int i=1; i<=V;i++)
                         g_prim->adj[i] = this->adj[i]; // TODO copy or ref??
                         // contract to v
-                    g_prim->contract(bloss, v);
+                    g_prim->contract(*bloss, v);
 //                    P’ ← find_augmenting_path( G’, M’ )
                     list<int> p_prim = g_prim->find_aug_path();
 //                    P ← lift P’ to G
+                    return lift_p(p_prim, v, *bloss);
                 }
             }
             edge_marked[edge_hash(v,w, V)] = true;
@@ -204,21 +249,82 @@ list<int> Graph::find_aug_path() {
     return nth;
 
 }
-void Graph::contract(unordered_set<int> edges, int v){
+list<int> Graph::lift_p(list<int> p_prim, int v, deque<int> bloss) {
+    list<int> path;
+    for(auto it = p_prim.begin(); it!= p_prim.end(); ++it){
+        if(*it==v){ // contracted blossom
+            int next_v_in_path;
+            if(++it != p_prim.end()){
+                next_v_in_path = *it;
+                it--;
+            }else next_v_in_path = NIL;
+            list<int> path_piece = path_in_blossom(bloss, v, next_v_in_path);
+            // insert path piece to path
+            path.insert(path.end(), path_piece.begin(), path_piece.end());
+        }
+        else{
+            path.push_back(*it);
+        }
+    }
+    return path;
+}
+list<int> Graph::path_in_blossom(deque<int> bloss, int v, int next_in_path ){ // v - contracted blossom in this v
+    auto opt1 = bloss.begin(); // 2 options of iterating over blossom cycle
+    auto opt2 = bloss.rbegin();
+    list<int> path_in_blossom;
+    // check which path has even nr of edges
+    if(next_in_path != NIL){ // case v is not last element of aug path
+        int iter=0;
+        int prev = v;
+        while(opt1 != bloss.end()){
+            int vert = get_other(*opt1, prev, V);
+            path_in_blossom.push_back(vert);
+            if(iter%2==0){
+                if(adj[vert].find(next_in_path) != adj[vert].end()){ // vert connects to v from original path
+                    return path_in_blossom;
+                }
+            }
+            iter++;
+            prev = vert;
+        }
+        // opt1 unsuccessful
+        iter = 0;
+        prev = v;
+        while(opt2 != bloss.rend()){
+            int vert = get_other(*opt2, prev, V);
+            path_in_blossom.push_back(vert);
+            if(iter%2==0){
+                if(adj[vert].find(next_in_path) != adj[vert].end()){ // vert connects to v from original path
+                    return path_in_blossom;
+                }
+            }
+            iter++;
+            prev = vert;
+        }
+        list<int> l;
+        return l; // cant find path in blossom
+    }
+    else{  // v is last in aug path
+        list<int> l;
+        return l;
+    }
+}
+void Graph::contract(deque<int> edges, int v){
     unordered_set<int> affected_v;  // vs to be contracted
     // remove edges in blossom
     for(auto edge: edges){
         int u = get_vertices(edge, V).first;
         int w = get_vertices(edge, V).second;
-        adj[u].remove(w);
-        adj[w].remove(u);
+        adj[u].erase(w);
+        adj[w].erase(u);
         affected_v.insert(u);
         affected_v.insert(w);
     }
     affected_v.erase(v);
     for(auto u: affected_v){
+        adj[v].insert(adj[u].begin(), adj[u].end());
+        adj[u] = {};
     }
-
 }
 int Graph::find_other_vertex_from_unmarked_edge_with(int v, unordered_map<int, bool> edge_marked){
     for(auto neigh: adj[v]){
@@ -247,13 +353,21 @@ void Graph::blossom() {
             pairs[pairs[i]] = i;
         }
     }
+    print_pairs();
     find_max_matching();
+}
+void Graph::print_pairs() {
+    cout<<"curent pairs:";
+    for(int i=0;i<=V;i++){
+        cout<<i<<": "<<pairs[i]<<", ";
+    }
 }
 void Graph::print_answer() {
     cout<<result<<"\n";
     for(auto i:employees){
         if(pairs[i]==NIL) continue;
         cout<<i-1<<" "<<pairs[i]-1<<"\n";
+        pairs[pairs[i]] = NIL;  // do not display same connection twice
     }
 }
 void Graph::hopcroft() {
@@ -262,10 +376,6 @@ void Graph::hopcroft() {
         for(auto u: employees)
             if (pairs[u]==NIL && dfs(u))
                 result++;
-    }
-    for(auto i:employees){
-        if(pairs[i]==NIL) continue;
-        pairs[pairs[i]] = NIL;  // do not count same connection twice
     }
 }
 bool Graph::bfs() {

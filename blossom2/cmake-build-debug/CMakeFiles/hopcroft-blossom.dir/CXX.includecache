@@ -21,8 +21,14 @@ cstring
 -
 unordered_set
 -
+unordered_map
+-
 cstdint
 -
 limits
+-
+vector
+-
+deque
 -
 

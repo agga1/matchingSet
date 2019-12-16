@@ -4,9 +4,9 @@
     <generated>
       <config projectName="blossom2" targetName="hopcroft3" />
       <config projectName="blossom2" targetName="hopcroft2" />
-      <config projectName="blossom2" targetName="hopcroft-blossom" />
-      <config projectName="blossom2" targetName="blossom" />
       <config projectName="blossom2" targetName="main1" />
+      <config projectName="blossom2" targetName="blossom" />
+      <config projectName="blossom2" targetName="hopcroft-blossom" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -17,6 +17,12 @@
   <component name="ChangeListManager">
     <list default="true" id="038a34fb-61f2-4e45-83e6-8a19686b2ae3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/hopcroft-blossom.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/hopcroft-blossom.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/vc140.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/hopcroft-blossom.dir/vc140.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/hopcroft-blossom.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hopcroft-blossom.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/hopcroft-blossom.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -31,16 +37,16 @@
     <session id="-782164941">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.open.time.5" value="2" />
+          <entry key="project.open.time.5" value="3" />
           <entry key="project.open.time.8" value="3" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="9531" />
+          <entry key="cpp" value="12307" />
           <entry key="h" value="13" />
           <entry key="txt" value="56" />
         </counts>
@@ -48,7 +54,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CMakeLists.txt" value="56" />
-          <entry key="ObjectiveC" value="9544" />
+          <entry key="ObjectiveC" value="12320" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -110,8 +116,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hopcroft-blossom.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
+            <state relative-caret-position="1699">
+              <caret line="138" column="21" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="21" />
               <folding>
                 <element signature="e#90#109#0" expanded="true" />
               </folding>
@@ -138,6 +144,12 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>adj</find>
+      <find>bloss</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -263,29 +275,30 @@
       <workItem from="1575919246222" duration="12848000" />
       <workItem from="1576342757534" duration="2141000" />
       <workItem from="1576351090892" duration="17413000" />
-      <workItem from="1576415960588" duration="802000" />
+      <workItem from="1576415960588" duration="12226000" />
+      <workItem from="1576520766735" duration="863000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38066000" />
+    <option name="totallyTimeSpent" value="50353000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73309606" visible="true" weight="0.2631579" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.73309606" visible="true" weight="0.2680162" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.2669039" side_tool="true" weight="0.25101215" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.07295374" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.16548042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="8" weight="0.3291815" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.23843417" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
@@ -361,8 +374,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hopcroft-blossom.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
+        <state relative-caret-position="1699">
+          <caret line="138" column="21" selection-start-line="138" selection-start-column="21" selection-end-line="138" selection-end-column="21" />
           <folding>
             <element signature="e#90#109#0" expanded="true" />
           </folding>

@@ -1,0 +1,15 @@
+Biuro Wydajności Algorytmów (BWA) zajmuje się w Bajtocji inwentaryzacją wszystkich odkrywanych algorytmów.
+Obywatele Bajtocji zgłaszają algorytmy wraz z oszacowaniem ich czasu działania, a urzędnicy BWA
+(którzy też są obywatelami) zapisują je w wielkiej bazie danych. Wielu obywateli zgłosiło ostatnio nowe algorytmy
+i są umówieni na rozmowy z urzędnikami (wielu obywateli jest umówionych z kilkoma urzędnikami, bo wymyślili wiele
+algorytmów). W trakcie rozmowy urzędnik powinien zweryfikować czy oszacowanie czasu działania algorytmu jest
+poprawne. Niestety, ze względu na nadmiar pracy, niektórzy urzędnicy mylą się i wpisują błędne dane.
+Król Bajtocji Bajtonomir XVI-ty (syn Bajtonomira VIII-go) postanowił więc przeprowadzić serię kontroli.
+W trakcie spotkania obywatela z urzędnikiem można przeprowadzić kontrolę, ale należy przestrzegać następującej
+zasady (wynikającymi z zasad życia społecznego w Bajtocji):
+
+    żaden urzędnik nie może byc kontrolowany więcej niż raz,
+    żaden obywatel nie może uczestniczyć w więcej niż jednej kontroli.
+
+Należy napisać program, który mając na wejściu listę urzędników oraz listę zaplanowanych spotkań zwróci
+listę tych spotkań, podczas których należy przeprowadzić kontrolę. Lista powinna być jak najdłuższa.
